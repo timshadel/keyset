@@ -6,6 +6,7 @@
     "commander": "~1.1.1",
     "cli-table": "~0.2.0",
     "superagent": "~0.14.3",
-    "batch": "~0.3.2"
+    "batch": "~0.3.2",
+    "simple-debug": "~1.1.0"
   }
 }
