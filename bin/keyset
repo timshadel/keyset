@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var keyer = require('commander')
+  , join = require('path').join
+  , herokuClient = require('../lib/heroku');
+
+keyer
+  .version(require(join(__dirname, "../package.json")).version);
+
+keyer
+  .command("check")
+  .description("check the keys in Heroku envs")
+  .action(function(args) {
+    require('../lib/check')();
+  });
+
+keyer
+  .command("sync")
+  .description("sync the keys in Heroku envs")
+  .action(function(args) {
+    require('../lib/sync')();
+  });
+
+keyer
+  .command("rekey <env>")
+  .description("create a new key for the auth app in env")
+  .action(function(args) {
+    require('../lib/rekey')(args);
+  });
+
+
+herokuClient(function(err, heroku) {
+  if (err) {
+    console.log(err);
+    return keyer.help();
+  }
+  keyer.parse(process.argv);
+  if (!keyer.args.length) return keyer.help();
+});
