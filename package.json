@@ -1,6 +1,6 @@
 {
   "name": "keyset",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "bin": "./bin/keyset",
   "dependencies": {
     "commander": "~1.1.1",
